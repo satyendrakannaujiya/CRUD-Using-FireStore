@@ -1,14 +1,57 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      Firebase
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+
+
+  <!-- <ion-list>
+    <ion-row>
+      <ion-col col-6>
+        <ion-input type="text" [(ngModel)]="Contact" placeholder="Add new name"></ion-input>
+      </ion-col>
+      <ion-col>
+        <button ion-button (click)="add()" color="secondary">
+          Add!
+        </button>
+      </ion-col>
+    </ion-row> -->
+
+  <p>Add Document</p>
+  <form (ngSubmit)="addDocument()">
+
+    <ion-item>
+      <label>Title</label>
+      <ion-input type="text" [(ngModel)]="title" placeholder="Title" name="title"></ion-input>
+    </ion-item>
+    <ion-item>
+      <label>Description</label>
+      <ion-textarea type="text" [(ngModel)]="description" placeholder="Description" name="description"></ion-textarea>
+    </ion-item>
+    <button ion-button type="submit" color="primary" full>Submit</button>
+  </form>
+  <ion-list *ngFor="let post of posts | async">
+    <ion-item (click)="getpost(post.id)" color="secondary">
+      <div class="container">
+        <div class="data">
+          <strong>{{post.data.title}}</strong>
+          <p>{{post.data.content}}</p>
+        </div>
+        <div class="del">
+          <ion-buttons>
+            <button ion-button clear (click)="deletePost(post.id)">
+              <ion-icon color="light" name="trash"></ion-icon>
+            </button>
+          </ion-buttons>
+        </div>
+      </div>
+    </ion-item>
+  </ion-list>
+  <!-- <h1>A Specipic post</h1>
+  <h3>{{ (post | async)?.title }}</h3>
+  <p>{{(post | async)?.title}}</p> -->
 </ion-content>

@@ -1,3 +1,10 @@
 page-home {
-
+     .container{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between; 
+     }
+  p {
+    text-decoration-color: black;
+  }
 }
